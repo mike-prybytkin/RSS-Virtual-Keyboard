@@ -10,7 +10,7 @@ module.exports = {
   },
   rules: {
     'linebreak-style': 'off', // Неправильно работает в Windows.
-
+    allowKeywords: false,
     'arrow-parens': 'off', // Несовместимо с prettier
     'object-curly-newline': 'off', // Несовместимо с prettier
     'no-mixed-operators': 'off', // Несовместимо с prettier
@@ -28,5 +28,14 @@ module.exports = {
     radix: 'off', // parseInt, parseFloat и radix выключены. Мне это не нравится.
 
     'prefer-destructuring': 'off',
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        mjs: 'never',
+        jsx: 'never',
+      },
+    ],
   },
 };
