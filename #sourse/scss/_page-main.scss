@@ -7,7 +7,7 @@ body {
     flex-direction: column;
 
     .caption {
-        @include font-arial (3rem, 800, $dark-color);
+        @include font-arial (2.5rem, 800, $dark-color);
         letter-spacing: 0.5rem;
     }
 
@@ -27,8 +27,8 @@ body {
     }
 
     .keyboard-containet {
-        width: 1100px;
-        margin: 50px 0px;
+        width: 970px;
+        margin: 30px 0px;
         @include flex (center, center);
         background-color: $background-gray;
         border-radius: 6px;
@@ -42,10 +42,10 @@ body {
 
         .key {
             @include flex (center, center);
-            @include font-arial (1.6rem, 400, $light-color-white);
+            @include font-arial (1.5rem, 400, $light-color-white);
             text-align: center;
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background-color: $dark-color2;
             border-radius: 5px;
             box-shadow: 0px 4px 2px #00000095;
@@ -56,66 +56,70 @@ body {
                 background-color: rgb(197, 104, 70);
             }
 
-            &:active {
+            &.active {
                 background-color: rgb(255, 68, 0);
                 transform: scale(0.96);
                 box-shadow: 0px 2px 2px #00000095;
             }
         }
 
-        .keyCodeBackspace {
+        .Backspace {
             width: 160px;
         }
 
-        .keyCodeTab {
+        .Delete {
+            width: 60px;
+        }
+
+        .Tab {
             width: 90px;
         }
 
-        .keyCodeCapsLock,
-        .keyCodeShiftLeft {
+        .CapsLock,
+        .ShiftLeft {
+            width: 130px;
+        }
+
+        .Enter,
+        .ShiftRight {
             width: 140px;
         }
 
-        .keyCodeEnter,
-        .keyCodeShiftRight {
-            width: 150px;
+        .Space {
+            width: 400px;
         }
 
-        .keyCodeSpace {
-            width: 470px;
-        }
-
-        .keyCodeControlRight,
-        .keyCodeControlLeft {
+        .ControlRight,
+        .ControlLeft {
             width: 80px;
         }
 
-        .keyCodeBackspace,
-        .keyCodeTab,
-        .keyCodeDelete,
-        .keyCodeCapsLock,
-        .keyCodeEnter,
-        .keyCodeShiftLeft,
-        .keyCodeShiftRight,
-        .keyCodeControlLeft,
-        .keyCodeMetaLeft,
-        .keyCodeAltLeft,
-        .keyCodeSpace,
-        .keyCodeAltRight,
-        .keyCodeControlRight,
-        .keyCodeArrowUp,
-        .keyCodeArrowLeft,
-        .keyCodeArrowDown,
-        .keyCodeArrowRight {
+        .Backspace,
+        .Tab,
+        .Delete,
+        .CapsLock,
+        .Enter,
+        .ShiftLeft,
+        .ShiftRight,
+        .ControlLeft,
+        .MetaLeft,
+        .AltLeft,
+        .Space,
+        .AltRight,
+        .ControlRight,
+        .ArrowUp,
+        .ArrowLeft,
+        .ArrowDown,
+        .ArrowRight {
             background-color: $dark-color;
         } 
     }
 
     .description {
-        width: 650px;
-        @include font-arial (1.4rem, 400, $dark-color-black);
+        width: 570px;
+        @include font-arial (1.2rem, 400, $dark-color-black);
         letter-spacing: 0.1rem;
-        line-height: 40px;
+        line-height: 30px;
         padding-bottom: 40px;
     }
     
