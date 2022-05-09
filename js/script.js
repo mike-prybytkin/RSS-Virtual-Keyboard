@@ -224,6 +224,16 @@ keyboardContainet.addEventListener('mousedown', function (event) {
     textarea.selectionStart = textarea.selectionEnd = cursorPosition += 4;
   }
 
+  // SPACE KEY input text in textarea
+  if (event.target.id === 'Space') {
+    cursorPosition = textarea.selectionStart;
+    textarea.value =
+      textarea.value.slice(0, cursorPosition) +
+      ' ' +
+      textarea.value.slice(cursorPosition);
+    textarea.selectionStart = textarea.selectionEnd = cursorPosition += 1;
+  }
+
   // BACKSPACE KEY input text in textarea
   if (event.target.id === 'Backspace') {
     cursorPosition = textarea.selectionStart;
