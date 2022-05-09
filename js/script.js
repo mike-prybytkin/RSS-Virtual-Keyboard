@@ -6,10 +6,10 @@ const body = document.querySelector('body');
 let language = localStorage.getItem('lang') || 'be';
 
 const PAGE_STRUCTURE = {
-  h1: 'caption',
-  textarea: 'textarea',
-  div: 'keyboard-containet',
   p: 'description',
+  div: 'keyboard-containet',
+  textarea: 'textarea',
+  h1: 'caption',
 };
 
 function toUpperCapsLetter() {
@@ -32,16 +32,28 @@ function toLowerCapsLetter() {
   });
 }
 
+function shiftEvent() {
+  keys.forEach((el) => {
+    let curr = el.id;
+    if (ShiftKeysList[`${language}`].hasOwnProperty(curr)) {
+      el.innerHTML = '';
+      el.innerHTML += `${ShiftKeysList[`${language}`][curr].toUpperCase()}`;
+    }
+  });
+}
+
 // create main structure
 
 Object.entries(PAGE_STRUCTURE).forEach((el) => {
   const curr = document.createElement(`${el[0]}`);
   curr.className = `${el[1]}`;
-  body.appendChild(curr);
+  body.prepend(curr);
 });
 
 const caption = document.querySelector('.caption');
 const textarea = document.querySelector('.textarea');
+textarea.focus();
+let cursorPosition = textarea.selectionStart;
 const keyboardContainet = document.querySelector('.keyboard-containet');
 const description = document.querySelector('.description');
 
@@ -99,13 +111,7 @@ window.addEventListener('keydown', function (event) {
 
   // shift key event
   if (event.key === 'Shift') {
-    keys.forEach((el) => {
-      let curr = el.id;
-      if (ShiftKeysList[`${language}`].hasOwnProperty(curr)) {
-        el.innerHTML = '';
-        el.innerHTML += `${ShiftKeysList[`${language}`][curr].toUpperCase()}`;
-      }
-    });
+    shiftEvent();
   }
 
   // change language
@@ -124,13 +130,23 @@ window.addEventListener('keydown', function (event) {
   // input text in textarea
   if (ShiftKeysList[`${language}`].hasOwnProperty(currEl.id)) {
     event.preventDefault();
-    textarea.value += currEl.textContent;
+    cursorPosition = textarea.selectionStart;
+    textarea.value =
+      textarea.value.slice(0, cursorPosition) +
+      currEl.textContent +
+      textarea.value.slice(cursorPosition);
+    textarea.selectionStart = textarea.selectionEnd = cursorPosition += 1;
   }
 
   // TAB KEY input text in textarea
   if (event.key === 'Tab') {
     event.preventDefault();
-    textarea.value += '    ';
+    cursorPosition = textarea.selectionStart;
+    textarea.value =
+      textarea.value.slice(0, cursorPosition) +
+      '    ' +
+      textarea.value.slice(cursorPosition);
+    textarea.selectionStart = textarea.selectionEnd = cursorPosition += 4;
   }
 });
 
@@ -185,19 +201,107 @@ keyboardContainet.addEventListener('mousedown', function (event) {
     event.target.classList.contains('ShiftLeft') ||
     event.target.classList.contains('ShiftRight')
   ) {
-    keys.forEach((el) => {
-      let curr = el.id;
-      if (ShiftKeysList[`${language}`].hasOwnProperty(curr)) {
-        el.innerHTML = '';
-        el.innerHTML += `${ShiftKeysList[`${language}`][curr].toUpperCase()}`;
-      }
-    });
+    shiftEvent();
+  }
+
+  // input text in textarea
+  if (ShiftKeysList[`${language}`].hasOwnProperty(currEl.id)) {
+    cursorPosition = textarea.selectionStart;
+    textarea.value =
+      textarea.value.slice(0, cursorPosition) +
+      currEl.textContent +
+      textarea.value.slice(cursorPosition);
+    textarea.selectionStart = textarea.selectionEnd = cursorPosition += 1;
+  }
+
+  // TAB KEY input text in textarea
+  if (event.target.id === 'Tab') {
+    cursorPosition = textarea.selectionStart;
+    textarea.value =
+      textarea.value.slice(0, cursorPosition) +
+      '    ' +
+      textarea.value.slice(cursorPosition);
+    textarea.selectionStart = textarea.selectionEnd = cursorPosition += 4;
+  }
+
+  // BACKSPACE KEY input text in textarea
+  if (event.target.id === 'Backspace') {
+    cursorPosition = textarea.selectionStart;
+    if (cursorPosition > 0) {
+      textarea.value =
+        textarea.value.slice(0, cursorPosition - 1) +
+        textarea.value.slice(cursorPosition);
+      textarea.selectionStart = textarea.selectionEnd = cursorPosition -= 1;
+    } else {
+      textarea.selectionStart = textarea.selectionEnd = cursorPosition = 0;
+    }
+  }
+
+  // DEL KEY input text in textarea
+  if (event.target.id === 'Delete') {
+    cursorPosition = textarea.selectionStart;
+    if (cursorPosition < textarea.value.length) {
+      textarea.value =
+        textarea.value.slice(0, cursorPosition) +
+        textarea.value.slice(cursorPosition + 1);
+      textarea.selectionStart = textarea.selectionEnd = cursorPosition;
+    } else {
+      textarea.selectionStart =
+        textarea.selectionEnd =
+        cursorPosition =
+          textarea.value.length;
+    }
+  }
+
+  // ENTER KEY input text in textarea
+  if (event.target.id === 'Enter') {
+    cursorPosition = textarea.selectionStart;
+    textarea.value =
+      textarea.value.slice(0, cursorPosition) +
+      '\n' +
+      textarea.value.slice(cursorPosition);
+    textarea.selectionStart =
+      textarea.selectionEnd =
+      cursorPosition =
+        textarea.value.slice(0, cursorPosition).length + 1;
+  }
+
+  // ArrowRight KEY input text in textarea
+  if (event.target.id === 'ArrowRight') {
+    if (cursorPosition < textarea.value.length) {
+      textarea.selectionStart = textarea.selectionEnd = cursorPosition += 1;
+    } else {
+      textarea.selectionStart =
+        textarea.selectionEnd =
+        cursorPosition =
+          textarea.value.length;
+    }
+  }
+
+  // ArrowLeft KEY input text in textarea
+  if (event.target.id === 'ArrowLeft') {
+    if (cursorPosition > 0) {
+      textarea.selectionStart = textarea.selectionEnd = cursorPosition -= 1;
+    } else {
+      textarea.selectionStart = textarea.selectionEnd = cursorPosition = 0;
+    }
+  }
+
+  // ArrowUp KEY input text in textarea
+  if (event.target.id === 'ArrowUp' || event.target.id === 'ArrowDown') {
+    cursorPosition = textarea.selectionStart;
+    textarea.value =
+      textarea.value.slice(0, cursorPosition) +
+      currEl.textContent +
+      textarea.value.slice(cursorPosition);
+    textarea.selectionStart = textarea.selectionEnd = cursorPosition += 1;
   }
 });
 
 // --- MOUSEUP EVENTS ---
 
 keyboardContainet.addEventListener('mouseup', function (event) {
+  textarea.focus();
   // animation
   keys.forEach((el) => {
     if (el.classList.contains('caps-active')) {
