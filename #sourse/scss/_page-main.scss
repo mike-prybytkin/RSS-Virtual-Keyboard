@@ -7,8 +7,9 @@ body {
     flex-direction: column;
 
     .caption {
-        @include font-arial (2.5rem, 800, $dark-color);
+        @include font-arial (2.3rem, 800, $dark-color);
         letter-spacing: 0.5rem;
+        margin: 10px 0;
     }
 
     .textarea {

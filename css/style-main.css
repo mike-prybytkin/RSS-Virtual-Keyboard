@@ -19,10 +19,11 @@ body {
 }
 body .caption {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   font-weight: 800;
   color: #383333;
   letter-spacing: 0.5rem;
+  margin: 10px 0;
 }
 body .textarea {
   width: 900px;

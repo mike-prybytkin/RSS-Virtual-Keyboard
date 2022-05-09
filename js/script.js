@@ -1,8 +1,5 @@
-// eslint-disable-next-line import/extensions
 import allKeysList from './keys-list.js';
-// eslint-disable-next-line import/extensions
 import CapsKeysList from './caps-keys-list.js';
-// eslint-disable-next-line import/extensions
 import ShiftKeysList from './shift-keys-list.js';
 
 const body = document.querySelector('body');
@@ -115,11 +112,25 @@ window.addEventListener('keydown', function (event) {
   if (event.ctrlKey && event.altKey) {
     if (localStorage.getItem('lang') === 'be') {
       localStorage.setItem('lang', 'en');
-      console.log(language);
+      language = localStorage.getItem('lang');
     } else {
       localStorage.setItem('lang', 'be');
+      language = localStorage.getItem('lang');
     }
-    document.location.reload();
+    createKeysContent();
+    capsLock.classList.remove('caps-active');
+  }
+
+  // input text in textarea
+  if (ShiftKeysList[`${language}`].hasOwnProperty(currEl.id)) {
+    event.preventDefault();
+    textarea.value += currEl.textContent;
+  }
+
+  // TAB KEY input text in textarea
+  if (event.key === 'Tab') {
+    event.preventDefault();
+    textarea.value += '    ';
   }
 });
 
@@ -147,6 +158,7 @@ window.addEventListener('keyup', function (event) {
 // --- MOUSEDOWN EVENTS ---
 
 keyboardContainet.addEventListener('mousedown', function (event) {
+  let currEl = document.querySelector(`.${event.target.id}`);
   // animation
   keys.forEach((el) => {
     if (el.classList.contains('caps-active')) {
