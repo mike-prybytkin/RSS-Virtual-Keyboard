@@ -94,6 +94,7 @@ createKeysContent();
 // --- KEYDOWN EVENTS ---
 
 window.addEventListener('keydown', function (event) {
+  textarea.focus();
   // animation
   let currEl = document.querySelector(`.${event.code}`);
   currEl.classList.add('active');
