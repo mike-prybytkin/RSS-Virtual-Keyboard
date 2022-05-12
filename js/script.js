@@ -1,5 +1,9 @@
+/* eslint-disable no-multi-assign */
+// eslint-disable-next-line import/extensions
 import allKeysList from './keys-list.js';
+// eslint-disable-next-line import/extensions
 import CapsKeysList from './caps-keys-list.js';
+// eslint-disable-next-line import/extensions
 import ShiftKeysList from './shift-keys-list.js';
 
 const body = document.querySelector('body');
@@ -13,8 +17,10 @@ const PAGE_STRUCTURE = {
 };
 
 function toUpperCapsLetter() {
+  // eslint-disable-next-line no-use-before-define
   keys.forEach((el) => {
-    let curr = el.id;
+    const curr = el.id;
+    // eslint-disable-next-line no-prototype-builtins
     if (CapsKeysList[`${language}`].hasOwnProperty(curr)) {
       el.innerHTML = '';
       el.innerHTML += `${CapsKeysList[`${language}`][curr].toUpperCase()}`;
@@ -23,8 +29,10 @@ function toUpperCapsLetter() {
 }
 
 function toLowerCapsLetter() {
+  // eslint-disable-next-line no-use-before-define
   keys.forEach((el) => {
-    let curr = el.id;
+    const curr = el.id;
+    // eslint-disable-next-line no-prototype-builtins
     if (CapsKeysList[`${language}`].hasOwnProperty(curr)) {
       el.innerHTML = '';
       el.innerHTML += `${CapsKeysList[`${language}`][curr].toLowerCase()}`;
@@ -33,8 +41,10 @@ function toLowerCapsLetter() {
 }
 
 function shiftEvent() {
+  // eslint-disable-next-line no-use-before-define
   keys.forEach((el) => {
-    let curr = el.id;
+    const curr = el.id;
+    // eslint-disable-next-line no-prototype-builtins
     if (ShiftKeysList[`${language}`].hasOwnProperty(curr)) {
       el.innerHTML = '';
       el.innerHTML += `${ShiftKeysList[`${language}`][curr].toUpperCase()}`;
@@ -82,7 +92,8 @@ const capsLock = document.querySelector('.CapsLock');
 
 function createKeysContent() {
   keys.forEach((el) => {
-    let curr = el.id;
+    const curr = el.id;
+    // eslint-disable-next-line no-prototype-builtins
     if (allKeysList[`${language}`].hasOwnProperty(curr)) {
       el.innerHTML = '';
       el.innerHTML += `${allKeysList[`${language}`][curr]}`;
@@ -93,10 +104,10 @@ createKeysContent();
 
 // --- KEYDOWN EVENTS ---
 
-window.addEventListener('keydown', function (event) {
+window.addEventListener('keydown', (event) => {
   textarea.focus();
   // animation
-  let currEl = document.querySelector(`.${event.code}`);
+  const currEl = document.querySelector(`.${event.code}`);
   currEl.classList.add('active');
 
   // CAPS LOCK key event
@@ -129,13 +140,14 @@ window.addEventListener('keydown', function (event) {
   }
 
   // input text in textarea
+  // eslint-disable-next-line no-prototype-builtins
   if (ShiftKeysList[`${language}`].hasOwnProperty(currEl.id)) {
     event.preventDefault();
     cursorPosition = textarea.selectionStart;
-    textarea.value =
-      textarea.value.slice(0, cursorPosition) +
-      currEl.textContent +
-      textarea.value.slice(cursorPosition);
+    textarea.value = textarea.value.slice(0, cursorPosition)
+      + currEl.textContent
+      + textarea.value.slice(cursorPosition);
+    // eslint-disable-next-line no-multi-assign
     textarea.selectionStart = textarea.selectionEnd = cursorPosition += 1;
   }
 
@@ -143,16 +155,17 @@ window.addEventListener('keydown', function (event) {
   if (event.key === 'Tab') {
     event.preventDefault();
     cursorPosition = textarea.selectionStart;
-    textarea.value =
-      textarea.value.slice(0, cursorPosition) +
-      '    ' +
-      textarea.value.slice(cursorPosition);
+    textarea.value = `${textarea.value.slice(
+      0,
+      cursorPosition,
+    )}    ${textarea.value.slice(cursorPosition)}`;
+    // eslint-disable-next-line no-multi-assign
     textarea.selectionStart = textarea.selectionEnd = cursorPosition += 4;
   }
 });
 
 // --- KEYUP EVENTS ---
-window.addEventListener('keyup', function (event) {
+window.addEventListener('keyup', (event) => {
   // animation
   keys.forEach((el) => {
     if (el.classList.contains('caps-active')) {
@@ -174,8 +187,8 @@ window.addEventListener('keyup', function (event) {
 
 // --- MOUSEDOWN EVENTS ---
 
-keyboardContainet.addEventListener('mousedown', function (event) {
-  let currEl = document.querySelector(`.${event.target.id}`);
+keyboardContainet.addEventListener('mousedown', (event) => {
+  const currEl = document.querySelector(`.${event.target.id}`);
   // animation
   keys.forEach((el) => {
     if (el.classList.contains('caps-active')) {
@@ -199,39 +212,42 @@ keyboardContainet.addEventListener('mousedown', function (event) {
 
   // shift key event
   if (
-    event.target.classList.contains('ShiftLeft') ||
-    event.target.classList.contains('ShiftRight')
+    event.target.classList.contains('ShiftLeft')
+    || event.target.classList.contains('ShiftRight')
   ) {
     shiftEvent();
   }
 
   // input text in textarea
+  // eslint-disable-next-line no-prototype-builtins
   if (ShiftKeysList[`${language}`].hasOwnProperty(currEl.id)) {
     cursorPosition = textarea.selectionStart;
-    textarea.value =
-      textarea.value.slice(0, cursorPosition) +
-      currEl.textContent +
-      textarea.value.slice(cursorPosition);
+    textarea.value = textarea.value.slice(0, cursorPosition)
+      + currEl.textContent
+      + textarea.value.slice(cursorPosition);
+    // eslint-disable-next-line no-multi-assign
     textarea.selectionStart = textarea.selectionEnd = cursorPosition += 1;
   }
 
   // TAB KEY input text in textarea
   if (event.target.id === 'Tab') {
     cursorPosition = textarea.selectionStart;
-    textarea.value =
-      textarea.value.slice(0, cursorPosition) +
-      '    ' +
-      textarea.value.slice(cursorPosition);
+    textarea.value = `${textarea.value.slice(
+      0,
+      cursorPosition,
+    )}    ${textarea.value.slice(cursorPosition)}`;
+    // eslint-disable-next-line no-multi-assign
     textarea.selectionStart = textarea.selectionEnd = cursorPosition += 4;
   }
 
   // SPACE KEY input text in textarea
   if (event.target.id === 'Space') {
     cursorPosition = textarea.selectionStart;
-    textarea.value =
-      textarea.value.slice(0, cursorPosition) +
-      ' ' +
-      textarea.value.slice(cursorPosition);
+    textarea.value = `${textarea.value.slice(
+      0,
+      cursorPosition,
+    )} ${textarea.value.slice(cursorPosition)}`;
+    // eslint-disable-next-line no-multi-assign
     textarea.selectionStart = textarea.selectionEnd = cursorPosition += 1;
   }
 
@@ -239,9 +255,8 @@ keyboardContainet.addEventListener('mousedown', function (event) {
   if (event.target.id === 'Backspace') {
     cursorPosition = textarea.selectionStart;
     if (cursorPosition > 0) {
-      textarea.value =
-        textarea.value.slice(0, cursorPosition - 1) +
-        textarea.value.slice(cursorPosition);
+      textarea.value = textarea.value.slice(0, cursorPosition - 1)
+        + textarea.value.slice(cursorPosition);
       textarea.selectionStart = textarea.selectionEnd = cursorPosition -= 1;
     } else {
       textarea.selectionStart = textarea.selectionEnd = cursorPosition = 0;
@@ -252,29 +267,23 @@ keyboardContainet.addEventListener('mousedown', function (event) {
   if (event.target.id === 'Delete') {
     cursorPosition = textarea.selectionStart;
     if (cursorPosition < textarea.value.length) {
-      textarea.value =
-        textarea.value.slice(0, cursorPosition) +
-        textarea.value.slice(cursorPosition + 1);
+      textarea.value = textarea.value.slice(0, cursorPosition)
+        + textarea.value.slice(cursorPosition + 1);
       textarea.selectionStart = textarea.selectionEnd = cursorPosition;
     } else {
-      textarea.selectionStart =
-        textarea.selectionEnd =
-        cursorPosition =
-          textarea.value.length;
+      textarea.selectionStart = textarea.selectionEnd = cursorPosition = textarea.value.length;
     }
   }
 
   // ENTER KEY input text in textarea
   if (event.target.id === 'Enter') {
     cursorPosition = textarea.selectionStart;
-    textarea.value =
-      textarea.value.slice(0, cursorPosition) +
-      '\n' +
-      textarea.value.slice(cursorPosition);
-    textarea.selectionStart =
-      textarea.selectionEnd =
-      cursorPosition =
-        textarea.value.slice(0, cursorPosition).length + 1;
+    textarea.value = `${textarea.value.slice(
+      0,
+      cursorPosition,
+    )}\n${textarea.value.slice(cursorPosition)}`;
+    // eslint-disable-next-line max-len
+    textarea.selectionStart = textarea.selectionEnd = cursorPosition = textarea.value.slice(0, cursorPosition).length + 1;
   }
 
   // ArrowRight KEY input text in textarea
@@ -282,10 +291,7 @@ keyboardContainet.addEventListener('mousedown', function (event) {
     if (cursorPosition < textarea.value.length) {
       textarea.selectionStart = textarea.selectionEnd = cursorPosition += 1;
     } else {
-      textarea.selectionStart =
-        textarea.selectionEnd =
-        cursorPosition =
-          textarea.value.length;
+      textarea.selectionStart = textarea.selectionEnd = cursorPosition = textarea.value.length;
     }
   }
 
@@ -301,17 +307,16 @@ keyboardContainet.addEventListener('mousedown', function (event) {
   // ArrowUp KEY input text in textarea
   if (event.target.id === 'ArrowUp' || event.target.id === 'ArrowDown') {
     cursorPosition = textarea.selectionStart;
-    textarea.value =
-      textarea.value.slice(0, cursorPosition) +
-      currEl.textContent +
-      textarea.value.slice(cursorPosition);
+    textarea.value = textarea.value.slice(0, cursorPosition)
+      + currEl.textContent
+      + textarea.value.slice(cursorPosition);
     textarea.selectionStart = textarea.selectionEnd = cursorPosition += 1;
   }
 });
 
 // --- MOUSEUP EVENTS ---
 
-keyboardContainet.addEventListener('mouseup', function (event) {
+keyboardContainet.addEventListener('mouseup', (event) => {
   textarea.focus();
   // animation
   keys.forEach((el) => {
@@ -324,8 +329,8 @@ keyboardContainet.addEventListener('mouseup', function (event) {
 
   // shift key event
   if (
-    event.target.classList.contains('ShiftLeft') ||
-    event.target.classList.contains('ShiftRight')
+    event.target.classList.contains('ShiftLeft')
+    || event.target.classList.contains('ShiftRight')
   ) {
     if (capsLock.classList.contains('caps-active')) {
       toUpperCapsLetter();
