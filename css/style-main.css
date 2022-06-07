@@ -1,0 +1,151 @@
+html {
+  font-size: 16px;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+body .caption {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #383333;
+  letter-spacing: 0.5rem;
+  margin: 10px 0;
+}
+body .textarea {
+  width: 900px;
+  height: 200px;
+  resize: none;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #000000;
+  letter-spacing: 0.1rem;
+  outline: none;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.398), -26px 0 35px -26px rgba(0, 0, 0, 0.8), 26px 0 35px -26px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.398), -26px 0 35px -26px rgba(0, 0, 0, 0.8), 26px 0 35px -26px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+body .keyboard-containet {
+  width: 970px;
+  margin: 30px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #8A8A8A;
+  border-radius: 6px;
+  gap: 10px;
+  padding: 15px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.398), -26px 0 35px -26px rgba(0, 0, 0, 0.8), 26px 0 35px -26px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.398), -26px 0 35px -26px rgba(0, 0, 0, 0.8), 26px 0 35px -26px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+body .keyboard-containet .key {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  background-color: #585252;
+  border-radius: 5px;
+  -webkit-box-shadow: 0px 4px 2px #00000095;
+          box-shadow: 0px 4px 2px #00000095;
+  cursor: pointer;
+  -webkit-transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease-in-out;
+}
+body .keyboard-containet .key:hover {
+  background-color: #c56846;
+}
+body .keyboard-containet .key.active {
+  background-color: #ff4400;
+  -webkit-transform: scale(0.96);
+          transform: scale(0.96);
+  -webkit-box-shadow: 0px 2px 2px #00000095;
+          box-shadow: 0px 2px 2px #00000095;
+}
+body .keyboard-containet .Backspace {
+  width: 160px;
+}
+body .keyboard-containet .Delete {
+  width: 60px;
+}
+body .keyboard-containet .Tab {
+  width: 90px;
+}
+body .keyboard-containet .CapsLock,
+body .keyboard-containet .ShiftLeft {
+  width: 130px;
+}
+body .keyboard-containet .Enter,
+body .keyboard-containet .ShiftRight {
+  width: 140px;
+}
+body .keyboard-containet .Space {
+  width: 400px;
+}
+body .keyboard-containet .ControlRight,
+body .keyboard-containet .ControlLeft {
+  width: 80px;
+}
+body .keyboard-containet .Backspace,
+body .keyboard-containet .Tab,
+body .keyboard-containet .Delete,
+body .keyboard-containet .CapsLock,
+body .keyboard-containet .Enter,
+body .keyboard-containet .ShiftLeft,
+body .keyboard-containet .ShiftRight,
+body .keyboard-containet .ControlLeft,
+body .keyboard-containet .MetaLeft,
+body .keyboard-containet .AltLeft,
+body .keyboard-containet .Space,
+body .keyboard-containet .AltRight,
+body .keyboard-containet .ControlRight,
+body .keyboard-containet .ArrowUp,
+body .keyboard-containet .ArrowLeft,
+body .keyboard-containet .ArrowDown,
+body .keyboard-containet .ArrowRight {
+  background-color: #383333;
+}
+body .description {
+  width: 570px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #000000;
+  letter-spacing: 0.1rem;
+  line-height: 30px;
+  padding-bottom: 40px;
+}

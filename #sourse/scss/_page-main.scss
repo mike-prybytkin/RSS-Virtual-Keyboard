@@ -1,0 +1,127 @@
+html {
+    font-size: 16px;
+}
+
+body {
+    @include flex (center, center);
+    flex-direction: column;
+
+    .caption {
+        @include font-arial (2.3rem, 800, $dark-color);
+        letter-spacing: 0.5rem;
+        margin: 10px 0;
+    }
+
+    .textarea {
+        width: 900px;
+        height: 200px;
+        resize: none;
+        padding: 10px;
+        @include font-arial (1.6rem, 400, $dark-color-black);
+        letter-spacing: 0.1rem;
+        outline: none;
+        border-radius: 10px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.398),
+            -26px 0 35px -26px rgba(0, 0, 0, .8),
+            26px 0 35px -26px rgba(0, 0, 0, .8),
+            0 0 40px rgba(0, 0, 0, .1) inset;
+    }
+
+    .keyboard-containet {
+        width: 970px;
+        margin: 30px 0px;
+        @include flex (center, center);
+        background-color: $background-gray;
+        border-radius: 6px;
+        gap: 10px;
+        padding: 15px;
+        flex-wrap: wrap;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.398),
+            -26px 0 35px -26px rgba(0, 0, 0, .8),
+            26px 0 35px -26px rgba(0, 0, 0, .8),
+            0 0 40px rgba(0, 0, 0, .1) inset;
+
+        .key {
+            @include flex (center, center);
+            @include font-arial (1.5rem, 400, $light-color-white);
+            text-align: center;
+            width: 50px;
+            height: 50px;
+            background-color: $dark-color2;
+            border-radius: 5px;
+            box-shadow: 0px 4px 2px #00000095;
+            cursor: pointer;
+            transition: all 0.1s ease-in-out;
+
+            &:hover {
+                background-color: rgb(197, 104, 70);
+            }
+
+            &.active {
+                background-color: rgb(255, 68, 0);
+                transform: scale(0.96);
+                box-shadow: 0px 2px 2px #00000095;
+            }
+        }
+
+        .Backspace {
+            width: 160px;
+        }
+
+        .Delete {
+            width: 60px;
+        }
+
+        .Tab {
+            width: 90px;
+        }
+
+        .CapsLock,
+        .ShiftLeft {
+            width: 130px;
+        }
+
+        .Enter,
+        .ShiftRight {
+            width: 140px;
+        }
+
+        .Space {
+            width: 400px;
+        }
+
+        .ControlRight,
+        .ControlLeft {
+            width: 80px;
+        }
+
+        .Backspace,
+        .Tab,
+        .Delete,
+        .CapsLock,
+        .Enter,
+        .ShiftLeft,
+        .ShiftRight,
+        .ControlLeft,
+        .MetaLeft,
+        .AltLeft,
+        .Space,
+        .AltRight,
+        .ControlRight,
+        .ArrowUp,
+        .ArrowLeft,
+        .ArrowDown,
+        .ArrowRight {
+            background-color: $dark-color;
+        } 
+    }
+
+    .description {
+        width: 570px;
+        @include font-arial (1.2rem, 400, $dark-color-black);
+        letter-spacing: 0.1rem;
+        line-height: 30px;
+        padding-bottom: 40px;
+    }
+    
+}
